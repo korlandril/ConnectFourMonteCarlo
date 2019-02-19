@@ -18,13 +18,18 @@ class gameBoard:
                 return i-1
 
     """places a token on top of the inputted column"""
-    def placeToken(self, inputToken, inputColumn):
+    def place_token(self, inputToken, inputColumn):
         empty_row = self.get_empty_row(inputColumn)
         self.gameBoard[empty_row][inputColumn] = inputToken
         print("Token successfully placed")
         self.print_board()
 
 
+    def reset_board(self):
+        for i in range(self.row):
+            current_row = []
+            for j in range(self.col):
+                self.gameBoard[i][j] = "."
 
     #prints the board
     def print_board(self):
@@ -41,11 +46,4 @@ class Player:
 
 hello = gameBoard(6, 7)
 hello.print_board()
-hello.placeToken("h",0)
-hello.placeToken("j",0)
-hello.placeToken("h",0)
-hello.placeToken("j",0)
-hello.placeToken("j",4)
-hello.placeToken("h",3)
-hello.placeToken("j",3)
-hello.placeToken("j",0)
+
