@@ -146,16 +146,24 @@ class gameBoard:
             for j in range(self.col):
                 try:
                     if self.gameBoard[i][j] != ".":
-                        if (not self.check_north(i, j, 1) or not self.check_south(i, j, 1)
-                        or not self.check_west(i, j, 1) or not self.check_east(i, j, 1)
-                        or not self.check_northwest(i, j, 1) or not self.check_northeast(i, j, 1)
-                        or not self.check_southwest(i, j, 1) or not self.check_southeast(i, j, 1)):
-                            return False
-                        elif (self.check_north(i, j, 1) or self.check_south(i, j, 1)
-                                or self.check_west(i, j, 1) or self.check_east(i, j, 1)
-                                or self.check_northwest(i, j, 1) or self.check_northeast(i, j, 1)
-                                or self.check_southwest(i, j, 1) or self.check_southeast(i, j, 1)):
+                        if self.check_north(i, j, 1):
                             return True
+                        elif self.check_south(i, j, 1):
+                            return True
+                        elif self.check_west(i, j, 1):
+                            return True
+                        elif self.check_east(i, j, 1):
+                            return True
+                        elif self.check_northwest(i, j, 1):
+                            return True
+                        elif self.check_northeast(i, j, 1):
+                            return True
+                        elif self.check_southeast(i, j, 1):
+                            return True
+                        elif self.check_southwest(i, j, 1):
+                            return True
+                        else:
+                            return False
                     else:
                         continue
                 #If a check is performed outside the bounds of the board, move on to the next token
@@ -182,6 +190,7 @@ hello.place_token(p1.get_token(), 0)
 hello.place_token(p1.get_token(), 0)
 hello.place_token(p1.get_token(), 0)
 hello.place_token(p1.get_token(), 0)
+
 
 if hello.win_check():
     print("There is a win!")
