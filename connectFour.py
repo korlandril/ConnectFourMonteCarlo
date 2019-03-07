@@ -15,6 +15,7 @@ class gameBoard:
             for j in range(col):
                 current_row.append(".")
             self.gameBoard.append(current_row)
+        self.winner = "No_winner"
 
     """helper function for the place token"""
     def get_empty_row(self, inputColumn):
@@ -53,117 +54,158 @@ class gameBoard:
             print('\n')
 
     def check_north(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x-1][input_y] == self.gameBoard[input_x][input_y]:
-                return self.check_north(input_x-1, input_y, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x-1][input_y] == self.gameBoard[input_x][input_y]:
+                    return self.check_north(input_x-1, input_y, num_consecutive + 1)
+                else:
+                    return False
+        except IndexError:
+            return False
 
     def check_south(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x+1][input_y] == self.gameBoard[input_x][input_y]:
-                return self.check_south(input_x+1, input_y, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x+1][input_y] == self.gameBoard[input_x][input_y]:
+                    return self.check_south(input_x+1, input_y, num_consecutive + 1)
+                else:
+                    return
+        except IndexError:
+            return False
 
     def check_west(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x][input_y-1] == self.gameBoard[input_x][input_y]:
-                return self.check_west(input_x, input_y-1, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x][input_y-1] == self.gameBoard[input_x][input_y]:
+                    return self.check_west(input_x, input_y-1, num_consecutive + 1)
+                else:
+                    return False
+        except IndexError:
+            return False
 
     def check_east(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x][input_y+1] == self.gameBoard[input_x][input_y]:
-                return self.check_east(input_x, input_y+1, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x][input_y+1] == self.gameBoard[input_x][input_y]:
+                    return self.check_east(input_x, input_y+1, num_consecutive + 1)
+                else:
+                    return False
+        except IndexError:
+            return False
 
     def check_northwest(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x-1][input_y-1] == self.gameBoard[input_x][input_y]:
-                return self.check_northwest(input_x-1, input_y-1, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x-1][input_y-1] == self.gameBoard[input_x][input_y]:
+                    return self.check_northwest(input_x-1, input_y-1, num_consecutive + 1)
+                else:
+                    return False
+        except IndexError:
+            return False
 
     def check_northeast(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x-1][input_y+1] == self.gameBoard[input_x][input_y]:
-                return self.check_northeast(input_x-1, input_y+1, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x-1][input_y+1] == self.gameBoard[input_x][input_y]:
+                    return self.check_northeast(input_x-1, input_y+1, num_consecutive + 1)
+                else:
+                    return False
+        except IndexError:
+            return False
 
     def check_southwest(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x+1][input_y-1] == self.gameBoard[input_x][input_y]:
-                return self.check_southwest(input_x+1, input_y-1, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x+1][input_y-1] == self.gameBoard[input_x][input_y]:
+                    return self.check_southwest(input_x+1, input_y-1, num_consecutive + 1)
+                else:
+                    return False
+        except IndexError:
+            return False
 
     def check_southeast(self, input_x, input_y, num_consecutive):
-        if input_x == -1 or input_y == -1:
-            raise OutsideOfBoardError
-        if num_consecutive == 4:
-            return True
-        else:
-            if self.gameBoard[input_x+1][input_y+1] == self.gameBoard[input_x][input_y]:
-                return self.check_southeast(input_x+1, input_y+1, num_consecutive + 1)
+        try:
+            if input_x == -1 or input_y == -1:
+                raise OutsideOfBoardError
+            if num_consecutive == 4:
+                return True
             else:
-                return False
+                if self.gameBoard[input_x+1][input_y+1] == self.gameBoard[input_x][input_y]:
+                    return self.check_southeast(input_x+1, input_y+1, num_consecutive + 1)
+                else:
+                    return False
+        except IndexError:
+            return False
 
+    """Inserts a token at a specific location. Only used for testing."""
+    def insert_token(self, input_x, input_y, input_token):
+        self.gameBoard[input_x][input_y] = input_token
     """Check for a Connect Four win condition"""
+
     def win_check(self):
         for i in range(self.row):
             for j in range(self.col):
                 try:
                     if self.gameBoard[i][j] != ".":
                         if self.check_north(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
                             return True
+                            self.winner = current_token
                         elif self.check_south(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
                             return True
+                            self.winner = current_token
                         elif self.check_west(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
                             return True
+                            self.winner = current_token
                         elif self.check_east(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
                             return True
+                            self.winner = current_token
                         elif self.check_northwest(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
+                            self.winner = current_token
                             return True
                         elif self.check_northeast(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
                             return True
                         elif self.check_southeast(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
                             return True
                         elif self.check_southwest(i, j, 1):
+                            self.winner = self.gameBoard[i][j]
                             return True
                         else:
-                            return False
+                            continue
                     else:
                         continue
                 #If a check is performed outside the bounds of the board, move on to the next token
@@ -172,6 +214,8 @@ class gameBoard:
                 #Check for when input_x or input_y decrements to -1
                 except OutsideOfBoardError:
                     continue
+        return
+
 
 class Player:
     def __init__(self, playerToken):
@@ -182,17 +226,42 @@ class Player:
 
 
 hello = gameBoard(6, 7)
-hello.print_board()
+#hello.print_board()
 p1 = Player("R")
 p2 = Player("Y")
 
-hello.place_token(p1.get_token(), 0)
-hello.place_token(p1.get_token(), 0)
-hello.place_token(p1.get_token(), 0)
-hello.place_token(p1.get_token(), 0)
+"""hello.place_token(p2.get_token(), 0)
+hello.place_token(p2.get_token(), 1)
+hello.place_token(p2.get_token(), 2)
+hello.place_token(p1.get_token(), 2)
+hello.place_token(p2.get_token(), 3)
+hello.place_token(p1.get_token(), 4)
+hello.place_token(p2.get_token(), 5)
 
+hello.place_token(p2.get_token(), 2)
+hello.place_token(p2.get_token(), 3)
+hello.place_token(p2.get_token(), 4)
+hello.place_token(p1.get_token(), 5)
+
+hello.place_token(p1.get_token(), 1)
+hello.place_token(p1.get_token(), 1)
+hello.place_token(p2.get_token(), 1)
+
+hello.place_token(p1.get_token(), 0)
+hello.place_token(p2.get_token(), 0)
+hello.place_token(p1.get_token(), 0)
+hello.place_token(p2.get_token(), 0)"""
+
+
+hello.insert_token(3, 3, p2.get_token())
+hello.insert_token(2, 4, p2.get_token())
+hello.insert_token(1, 5, p2.get_token())
+hello.insert_token(0, 6, p2.get_token())
+
+hello.print_board()
 
 if hello.win_check():
     print("There is a win!")
+    print("The winner is " + hello.winner)
 else:
     print("No win detected")
