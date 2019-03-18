@@ -351,3 +351,4 @@ while (not globalBoard.win_check()) and (not globalBoard.is_draw()):
     globalBoard = gameBoardState(6, 7, "R", player2.get_best_move())
 
 print("The winner is " + globalBoard.winner)
+#:)
